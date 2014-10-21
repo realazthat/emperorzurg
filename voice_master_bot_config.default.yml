@@ -1,0 +1,87 @@
+db_path: voice_master_bot.db #path to where the db flat file is, or should be
+channel: '#freenode' #change this hehe
+server_host: irc.freenode.net
+server_port: 6667 #maybe I should see if twisted does ssl
+nick: somenick #you prolly want a registered nick that has op in the channel
+nickserv_password: putsomethinghere
+loop_time: 10 #loop time for other (extra) services to run
+
+urlmonitor:
+  whitelist: ['www.reddit.com/r/Judaism/',
+              'www.shlomifish.org', 'shlomifish.org',
+              'amazon.com', 'www.amazon.com',
+              'hebrewbooks.org'
+              ]
+
+default_roles: [admin,ops,halfops,trusted]
+
+default_permissions: [voice, devoice, lockdown, standdown, quiet, unquiet,
+                      announce, listroles, listroleperms, listuserperms, whohasrole,
+                      make_admin, make_ops, make_halfops, make_trusted, add_user_role,
+                      take_admin, take_ops, take_halfops, take_trusted,
+                      add_user, remove_user,
+                      private_message, notice_message,
+                      trustlinks,
+                      kick]
+
+default_role_permissions:
+  admin: [voice, devoice, lockdown, standdown, quiet, unquiet,
+          announce, listroles, listroleperms, listuserperms, whohasrole,
+          make_trusted, make_ops, make_halfops, make_admin, add_user_role,
+          take_trusted, take_ops, take_halfops, take_admin,
+          add_user, remove_user,
+          private_message, notice_message,
+          trustlinks,
+          kick]
+  ops: [voice, devoice, lockdown, standdown, quiet, unquiet,
+        announce, listroles, listroleperms, listuserperms, whohasrole,
+        make_trusted, make_ops, make_halfops, add_user_role,
+        take_trusted, take_ops, take_halfops,
+        add_user, remove_user,
+        private_message, notice_message,
+        trustlinks,
+        kick]
+  halfops: [voice, devoice, lockdown, standdown, quiet, unquiet, trustlinks, kick]
+  trusted: [trustlinks]
+
+default_admins: [ 'unaffiliated/realazthat' ]
+
+user_mode_commands:
+  - permission: voice
+    command: kol
+    modes: v
+    set: True
+    explanation: "Sets +v on specified users. +v will allow a user to talk when the channel is in mode +m."
+  - permission: devoice
+    command: shvag
+    modes: v
+    set: False
+    explanation: "Sets -v on specified users. -v will disallow a user to talk when the channel is in mode +m."
+  - permission: quiet
+    command: quiet
+    modes: q
+    set: True
+    explanation: "Sets +q on specified users. +q will disallow a user to talk."
+  - permission: unquiet
+    command: unquiet
+    modes: q
+    set: False
+    explanation: "Sets -q on specified users. +q will disallow a user to talk. This command takes +q off of a user"
+    
+channel_mode_commands:
+  - permission: lockdown
+    command: lockdown
+    modes: m
+    set: True
+    explanation: "Sets +m on the channel. When a channel is set +m, only users with +o or +v on the channel can send to it."
+  - permission: standdown
+    command: standdown
+    modes: m
+    set: False
+    explanation: "Sets -m on the channel. When a channel is set +m, only users with +o or +v on the channel can send to it. This command will take the channel out of mode +m."
+
+
+
+
+
+

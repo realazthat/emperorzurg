@@ -1,0 +1,7 @@
+
+
+
+###Required libs
+
+ircutils
+twisted
